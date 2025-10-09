@@ -3,10 +3,10 @@ torchvision
 numpy
 pandas
 matplotlib
-opencv-python
+opencv-python-headless==4.10.0.84
 rasterio
-scikit-learn
-streamlit
-huggingface-hub
+scikit-image
 tqdm
-yolov8
+streamlit
+ultralytics
+Pillow
