@@ -42,15 +42,10 @@ https://aetherscan-p3cw48qzje2zwcj9mxdakb.streamlit.app/
 
 ### Prepare Data (optional)
 To merge Sentinel-2 .jp2 bands into GeoTIFFs:
+```bash
 python tools/merge_bands.py --input-folder <path_to_folder_with_B02_B03_B04_B08_jp2> --output data/sample_T1.tif
+```
 
-## Repo Layout
-src/                # preprocessing, detection, visualization, main.py
-data/               # sample tiles (add small test GeoTIFFs here)
-models/             # (optional) YOLO/weights later
-notebooks/          # exploration
-demo/               # screenshots and outputs
-LICENSE             # MIT
 
 ## Future Extensions
 - Sentinel-2 API integration for automated temporal data ingestion
