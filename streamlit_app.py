@@ -4,7 +4,6 @@ import cv2
 import os
 import tempfile
 import json
-
 from src.detection import ndvi_gain_loss_stats  # NEW
 from src.geoexport import mask_to_geojson       # NEW
 

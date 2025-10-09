@@ -1,39 +1,46 @@
-# AetherScan
+# AetherScan: Change Intelligence for Earth Observation
 **AI-Driven Satellite Imagery Intelligence for Environmental & Defence Applications**
+***Turning raw satellite pixels into actionable intelligence.***
 
-> Detect deforestation, illegal construction, and land-use anomalies using open satellite data + explainable AI.
+## Overview
+AetherScan is an AI-driven remote-sensing platform that automatically detects, quantifies, and visualizes landscape and infrastructure changes using multi-temporal satellite imagery.
+It combines NDVI, SSIM, and NDWI analytics to distinguish vegetation loss, urban growth, deforestation, and structural changes - all within a single unified workflow.
 
-## What it does
-- **Change detection:** ΔNDVI + SSIM-based change masks between two dates (T1 vs T2).
-- **Visual overlays:** Heatmaps on RGB composites for instant interpretation.
-- **Extensible:** Plug in YOLOv8 / SAM / ViTs for object and semantic layers.
-- **GeoJSON export:** Polygonized change masks (NDVI/SSIM) for GIS integration (QGIS/Leaflet/Mapbox).
-- **Stats:** Vegetation loss/gain and net change (%), water-masked via NDWI.
+## Key Capabilities
+
+| Feature | Description |
+|----------|--------------|
+| **Hybrid AI Engine** | Combines NDVI-based spectral change detection with SSIM-based structural analysis for accurate surface intelligence. |
+| **Water Masking via NDWI** | Automatically suppresses false positives over lakes, rivers, and reservoirs. |
+| **Change Statistics Dashboard** | Quantifies vegetation loss/gain, net change, and total impact — instantly displayed in a live stats card. |
+| **GeoJSON Export** | Generates polygonized change masks for GIS platforms (QGIS, Leaflet, ArcGIS). |
+| **Streamlit Cloud Deployment** | Fully interactive, zero-setup web dashboard. Upload T1/T2 GeoTIFFs and visualize change instantly. |
+| **Open-Source & Lightweight** | Built entirely with open-source Python (rasterio, OpenCV, scikit-image, Streamlit). |
+
 
 ## Why it matters (Thales alignment)
 - **Defence & Security:** Border encroachment & unauthorized build-up detection.
 - **Aeronautics & Space:** Satellite/UAV imagery processing & analytics.
 - **Cybersecurity & Digital Identity:** Secure, responsible AI deployment.
 
-## Architecture
-Data → Preprocess → ΔNDVI/SSIM → Threshold+Morphology → Overlays → CLI/Streamlit App
+## Tech Stack
+- **Python 3.10+**
+- **Streamlit**
+- **Rasterio**
+- **OpenCV (headless)**
+- **NumPy / scikit-image**
 
 
 ## Quickstart
+### Run Locally
 ```bash
-git clone https://github.com/heliovenusia/AetherScan.git
-cd AetherScan
 pip install -r requirements.txt
-python src/main.py --t1 data/sample_T1.tif --t2 data/sample_T2.tif --out demo/output.png
+python src/main.py --t1 data/sample_T1.tif --t2 data/sample_T2.tif --red 2 --nir 3 --out demo/output.png
 ```
+### Streamlit Demo
+https://aetherscan-p3cw48qzje2zwcj9mxdakb.streamlit.app/
 
-## Streamlit Demo
-Coming soon: hosted link
-
-## Run locally:
-streamlit run streamlit_app.py
-
-## Prepare Data (optional)
+### Prepare Data (optional)
 To merge Sentinel-2 .jp2 bands into GeoTIFFs:
 python tools/merge_bands.py --input-folder <path_to_folder_with_B02_B03_B04_B08_jp2> --output data/sample_T1.tif
 
@@ -45,14 +52,12 @@ notebooks/          # exploration
 demo/               # screenshots and outputs
 LICENSE             # MIT
 
-## Roadmap
-* Cloud mask & co-registration upgrade
-* YOLOv8 for man-made object detection
-* Semantic segmentation (DeepLabV3+/SAM)
-* REST API (FastAPI) + GeoJSON export
-* Eval metrics & benchmark report
+## Future Extensions
+- Sentinel-2 API integration for automated temporal data ingestion
+- Real-time alert pipeline for border or deforestation surveillance
+- Integration with Thales secure cloud for classified analytics
 
-### Tips
+## Tips
 - For Sentinel-2 bands stacked as **B02,B03,B04,B08**, pass `--red 2 --nir 3`.
 - Enable water mask (NDWI) to suppress false positives over lakes/rivers.
 - Use the Streamlit sidebar sliders to adjust overlay opacity and view % change.
