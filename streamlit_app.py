@@ -13,7 +13,7 @@ from src.detection import delta_ndvi_mask, ssim_change, apply_water_mask, change
 from src.visualization import overlay_mask, stack_h
 
 st.set_page_config(page_title="AetherScan", layout="wide")
-st.title("🛰️ AetherScan — Satellite Change Intelligence (MVP)")
+st.title("AetherScan - Satellite Change Intelligence (MVP)")
 
 with st.sidebar:
     st.header("Controls")
